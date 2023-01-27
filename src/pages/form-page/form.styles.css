@@ -1,0 +1,12 @@
+
+.form-component{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
