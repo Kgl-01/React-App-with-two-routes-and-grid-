@@ -5,9 +5,19 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 
-const GridPage = ({ data }) => {
+const GridPage = ({ dataFetcher }) => {
+  const [data, setData] = useState();
+
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([]);
+
+  const FetchData = async () => {
+    const req = await fetch(dataFetcher);
+    const res = await req.json();
+    setData(res);
+    console.log(res);
+  };
+
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
@@ -16,8 +26,8 @@ const GridPage = ({ data }) => {
     []
   );
 
-  useState(() => {
-    setColumnDefs(data.map((info) => Object.keys[info]));
+  useEffect(() => {
+    FetchData();
   }, []);
 
   return (
@@ -32,6 +42,6 @@ const GridPage = ({ data }) => {
   );
 };
 
-const mapStateToProps = ({ data: { data } }) => ({ data });
+const mapStateToProps = (state) => ({ dataFetcher: state.data.dataFetcher });
 
 export default connect(mapStateToProps)(GridPage);

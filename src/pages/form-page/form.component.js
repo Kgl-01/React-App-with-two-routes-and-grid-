@@ -1,49 +1,69 @@
 import { useEffect, useState } from "react";
 import "./form.styles.css";
-
+import { connect } from "react-redux";
+import { dataUrl } from "../../redux/data-redux/data.action";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+const Form = ({ dataUrl }) => {
+  const url = {
+    users: "https://dummyjson.com/users",
+    products: "https://dummyjson.com/products",
+  };
+
+  const { users, products } = url;
+
   const options = [
     { value: "", text: "--Choose an option--" },
-    { value: "user-info", text: "USER-INFO" },
+    { value: `${users}`, text: "USER-INFO" },
+    { value: `${products}`, text: "Products" },
   ];
   const [selected, setSelected] = useState(options[0].text);
 
   const navigate = useNavigate();
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   setSelected(e.target.value);
-  // };
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    dataUrl(e.target.value);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     setSelected(options[0].text);
   };
 
-  //Tried completing the assignment but failed due to slow system
-
   return (
-    <div className="form-page">
-      <div className="form-input">
-        <label className="label">Select the Data</label>
-        <select className="drop-down">
+    <div className="selection-form">
+      <form onSubmit={onSubmit}>
+        <label className="title">Select the data</label>
+        <select className="drop-down" onChange={handleChange}>
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.text}
+              className="drop-down-options"
+              value={option.value}
+            >
               {option.text}
             </option>
           ))}
         </select>
-      </div>
-      <button
-        className="fetch-data"
-        onSubmit={onSubmit}
-        onClick={() => navigate("/grid")}
-      >
-        Fetch data
-      </button>
+        <input
+          type="button"
+          className="submit"
+          onClick={
+            selected
+              ? () => {
+                  navigate("/grid");
+                }
+              : navigate(-1)
+          }
+          value="SUBMIT"
+        />
+      </form>
     </div>
   );
 };
 
-export default Form;
+const mapDispatchToProps = (dispatch) => ({
+  dataUrl: (url) => dispatch(dataUrl(url)),
+});
+
+export default connect(null, mapDispatchToProps)(Form);
