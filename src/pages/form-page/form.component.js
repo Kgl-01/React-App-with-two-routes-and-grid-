@@ -8,14 +8,17 @@ const Form = ({ dataUrl }) => {
   const url = {
     users: "https://dummyjson.com/users",
     products: "https://dummyjson.com/products",
+    olympicWinners:
+      "https://www.ag-grid.com/example-assets/olympic-winners.json",
   };
 
-  const { users, products } = url;
+  const { users, products, olympicWinners } = url;
 
   const options = [
     { value: "", text: "--Choose an option--" },
     { value: `${users}`, text: "USER-INFO" },
     { value: `${products}`, text: "Products" },
+    { value: `${olympicWinners}`, text: "Olympic Winners" },
   ];
   const [selected, setSelected] = useState(options[0].text);
 

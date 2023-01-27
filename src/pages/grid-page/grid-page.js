@@ -4,17 +4,23 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
+import { GridApi } from "ag-grid-community";
 
 const GridPage = ({ dataFetcher }) => {
   const [data, setData] = useState();
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([]);
+  const gridOptions = {
+    columnDefs: columnDefs,
+    enableSorting: true,
+    enableFilter: true,
+    pagination: true,
+  };
 
-  const FetchData = async () => {
+  const fetchData = async () => {
     const req = await fetch(dataFetcher);
     const res = await req.json();
-    setData(res);
     console.log(res);
   };
 
@@ -27,7 +33,8 @@ const GridPage = ({ dataFetcher }) => {
   );
 
   useEffect(() => {
-    FetchData();
+    fetchData();
+    console.log(dataFetcher);
   }, []);
 
   return (
