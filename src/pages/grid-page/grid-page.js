@@ -7,7 +7,7 @@ const GridPage = ({ dataFetcher }) => {
   return (
     <div className="grid-component">
       <div className="go-back">
-        <NavLink to="/"> &#xf015; BACK TO HOMEPAGE</NavLink>
+        <NavLink to="/"> BACK TO HOMEPAGE</NavLink>
       </div>
       <SimpleDynamicColsGrid dataFetcher={dataFetcher} />
     </div>

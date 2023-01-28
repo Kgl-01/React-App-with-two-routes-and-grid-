@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Form />} />
-        <Route path="/grid" element={<GridPage />} />
+        <Route path="/">
+          <Route index element={<Form />} />
+          <Route path="grid" element={<GridPage />} />
+        </Route>
       </Routes>
     </div>
   );
