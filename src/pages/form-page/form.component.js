@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import "./form.styles.css";
+import { useState } from "react";
+import "./form.styles.scss";
 import { connect } from "react-redux";
 import { dataUrl } from "../../redux/data-redux/data.action";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +35,7 @@ const Form = ({ dataUrl }) => {
 
   return (
     <div className="selection-form">
+      <h1 className="header">DATA FETCHER</h1>
       <form onSubmit={onSubmit}>
         <label className="title">Select the data</label>
         <select className="drop-down" onChange={handleChange}>
@@ -50,15 +51,15 @@ const Form = ({ dataUrl }) => {
         </select>
         <input
           type="button"
-          className="submit"
+          className="fetch-data"
           onClick={
             selected
               ? () => {
                   navigate("/grid");
                 }
-              : navigate(-1)
+              : () => navigate(-1)
           }
-          value="SUBMIT"
+          value="FETCH DATA"
         />
       </form>
     </div>

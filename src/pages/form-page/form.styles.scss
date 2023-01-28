@@ -1,0 +1,34 @@
+.selection-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    
+
+    form{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: max-content;
+        margin-bottom: 60px;
+
+        .header{
+            font-size: larger;
+            
+            &:hover{
+                color: red;
+            }
+        }
+
+        .fetch-data{
+            background-color: black;
+            color: white;
+            font-size: 22px;
+
+            &:hover{
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+}
