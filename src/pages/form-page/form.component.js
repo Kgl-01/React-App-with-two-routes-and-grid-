@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 
 const Form = ({ dataUrl }) => {
   const url = {
-    users: "https://dummyjson.com/users",
-    products: "https://hp-api.onrender.com/api/characters",
+    users: "https://hp-api.onrender.com/api/characters",
+    carsInfo: "https://www.ag-grid.com/example-assets/row-data.json",
     olympicWinners:
       "https://www.ag-grid.com/example-assets/olympic-winners.json",
   };
 
-  const { users, products, olympicWinners } = url;
+  const { users, carsInfo, olympicWinners } = url;
 
   const options = [
     { value: "", text: "--Choose an option--" },
-    { value: `${users}`, text: "USER-INFO" },
-    { value: `${products}`, text: "Products" },
-    { value: `${olympicWinners}`, text: "Olympic Winners" },
+    { value: `${users}`, text: "USERS INFO" },
+    { value: `${carsInfo}`, text: "CARS INFO" },
+    { value: `${olympicWinners}`, text: "OLYMPIC WINNERS" },
   ];
   const [selected, setSelected] = useState(options[0].text);
 

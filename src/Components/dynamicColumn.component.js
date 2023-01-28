@@ -1,25 +1,31 @@
-const DynamicColsGrid = ({ dataFetcher }) => {
+import { AgGridReact } from "ag-grid-react";
+
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { useEffect, useState } from "react";
+
+const SimpleDynamicColsGrid = ({ dataFetcher }) => {
   const [rowData, setRowData] = useState();
   const [colDefs, setColDefs] = useState([]);
 
-  const fetchData = async () => {
-    const req = await fetch(dataFetcher);
-    const res = await req.json();
-    const keys = Object.keys(res[0]);
-    let jsonColDefs = keys.map((key) => {
-      return { field: key };
-    });
-    setColDefs(jsonColDefs);
-    setRowData(res);
-    console.log(res);
-  };
-
   useEffect(() => {
-    fetchData();
+    fetch(dataFetcher)
+      .then((result) => result.json())
+      .then((data) => {
+        const keys = Object.keys(data[0]);
+        let jsonColDefs = keys.map((key) => {
+          return { field: key };
+        });
+        setColDefs(jsonColDefs);
+        setRowData(data);
+      });
   }, []);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+    <div
+      className="ag-theme-alpine"
+      style={{ height: "100vh", width: "100vw" }}
+    >
       <AgGridReact
         defaultColDef={{ sortable: true, filter: true }}
         pagination={true}
@@ -30,4 +36,4 @@ const DynamicColsGrid = ({ dataFetcher }) => {
   );
 };
 
-export default DynamicColsGrid;
+export default SimpleDynamicColsGrid;
