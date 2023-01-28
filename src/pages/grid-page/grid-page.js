@@ -11,12 +11,6 @@ const GridPage = ({ dataFetcher }) => {
 
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([]);
-  const gridOptions = {
-    columnDefs: columnDefs,
-    enableSorting: true,
-    enableFilter: true,
-    pagination: true,
-  };
 
   const fetchData = async () => {
     const req = await fetch(dataFetcher);

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Form = ({ dataUrl }) => {
   const url = {
     users: "https://dummyjson.com/users",
-    products: "https://dummyjson.com/products",
+    products: "https://hp-api.onrender.com/api/characters",
     olympicWinners:
       "https://www.ag-grid.com/example-assets/olympic-winners.json",
   };
