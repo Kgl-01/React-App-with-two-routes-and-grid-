@@ -3,6 +3,11 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+
+    .header{
+        font-size: 70px;
+        font-weight: bold;
+    }
     
 
     form{
@@ -10,14 +15,19 @@
         flex-direction: column;
         width: fit-content;
         height: max-content;
-        margin-bottom: 60px;
 
-        .header{
-            font-size: larger;
-            
-            &:hover{
-                color: red;
-            }
+
+        
+
+        .title{
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .drop-down{
+            font-size: large;
+            background-color: transparent;
+            margin-bottom: 20px;
         }
 
         .fetch-data{
