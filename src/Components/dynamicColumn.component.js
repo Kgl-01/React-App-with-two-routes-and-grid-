@@ -27,7 +27,10 @@ const SimpleDynamicColsGrid = ({ dataFetcher }) => {
       style={{ height: "100vh", width: "100vw" }}
     >
       <AgGridReact
-        defaultColDef={{ sortable: true, filter: true }}
+        defaultColDef={{
+          sortable: true,
+          filter: true,
+        }}
         pagination={true}
         rowData={rowData}
         rowSelection="multiple"
